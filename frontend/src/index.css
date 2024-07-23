@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .glassmorphism {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(0.5px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+*{
+  user-select: none;
+}
