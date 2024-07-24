@@ -7,15 +7,15 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="bg-gray-800 p-4">
+        <nav className="bg-gray-800 p-4 border-b-2 sticky top-0 z-20">
             {/* Laptop Navbar */}
             <div className="container mx-auto flex justify-between items-center">
-                <div className="text-white text-xl font-bold">CallBotix</div>
+                <Link to={'/'} className="text-white text-xl font-bold">CallBotix</Link>
                 <div className="hidden xl:flex space-x-6">
-                    <Link to={'#'} className="text-white hover:text-yellow-500">Home</Link>
-                    <Link to={'#'} className="text-white hover:text-yellow-500">Contact Us</Link>
-                    <Link to={'#'} className="text-white hover:text-yellow-500">Login</Link>
-                    <Link to={'#'} className="text-white hover:text-yellow-500">About Us</Link>
+                    <Link to={'/'} className="text-white hover:text-yellow-500">Home</Link>
+                    <Link to={'/ContactUs'} className="text-white hover:text-yellow-500">Contact Us</Link>
+                    <Link to={'/AboutUs'} className="text-white hover:text-yellow-500">About Us</Link>
+                    <Link to={'/Login'} className="text-white hover:text-yellow-500">Login</Link>
                 </div>
 
                 {/* Mobile Navbar */}
@@ -28,10 +28,10 @@ const Navbar = () => {
                 </div>
             </div>
             <div className="hidden mobile-menu">
-                <Link to={'#'} className="block py-2 px-4 text-sm text-white hover:bg-yellow-500">Home</Link>
-                <Link to={'#'} className="block py-2 px-4 text-sm text-white hover:bg-yellow-500">Contact Us</Link>
-                <Link to={'#'} className="block py-2 px-4 text-sm text-white hover:bg-yellow-500">Login</Link>
-                <Link to={'#'} className="block py-2 px-4 text-sm text-white hover:bg-yellow-500">About Us</Link>
+                <Link to={'/'} className="block py-2 px-4 text-sm text-white hover:text-yellow-500">Home</Link>
+                <Link to={'/ContactUs'} className="block py-2 px-4 text-sm text-white hover:text-yellow-500">Contact Us</Link>
+                <Link to={'/AboutUs'} className="block py-2 px-4 text-sm text-white hover:text-yellow-500">About Us</Link>
+                <Link to={'/Login'} className="block py-2 px-4 text-sm text-white hover:text-yellow-500">Login</Link>
             </div>
         </nav>
     );

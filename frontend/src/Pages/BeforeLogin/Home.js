@@ -4,9 +4,16 @@ import Footer from '../../Components/Footer'
 import Image from '../../Images/HomeBackground.jpg';
 
 const Home = () => {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+  scrollToTop();
   return (
     <div>
-      <Navbar />
+      <Navbar className='sticky top-0 z-20'/>
       <div>
         <div className='flex flex-col'>
           <div className='h-full w-full bg-cover bg-center relative' style={{ backgroundImage: `url(${Image})` }}>

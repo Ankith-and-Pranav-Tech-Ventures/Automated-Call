@@ -7,6 +7,8 @@ import { Context } from './Context/ContextProvider';
 import Home from './Pages/BeforeLogin/Home';
 import Login from './Pages/BeforeLogin/Login';
 import Logout from './Pages/AfterLogin/Logout';
+import AboutUs from './Pages/BeforeLogin/AboutUs';
+import ContactUs from './Pages/BeforeLogin/ContactUs';
 
 function App() {
   return (
@@ -15,6 +17,10 @@ function App() {
         <Router>
           <Routes>
             <Route path='/' element={<Home />} />
+            <Route path='/AboutUs' element={<AboutUs />} />
+            <Route path='/ContactUs' element={<ContactUs />} />
+            <Route path='/Login' element={<Login />} />
+            <Route path='/Logout' element={<Logout />} />
           </Routes>
         </Router>
       </ContextProvider>
