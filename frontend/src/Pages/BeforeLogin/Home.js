@@ -30,15 +30,15 @@ const Home = () => {
                   <h2 className='text-xl font-semibold mb-4 text-center text-white'>Want a Call From CallBotix?</h2>
                   <div className='mb-4 p-2 flex flex-col items-center glassmorphism'>
                     <label className='block text-lg font-medium text-white mb-2'>What's Your Name?</label>
-                    <input type='text' className='w-full border-b-2 border-white p-2 bg-transparent text-white focus:outline-none placeholder:text-white' placeholder='Pranav Raghavan C M' />
+                    <input type='text' className='w-full border-b-2 border-white p-2 bg-transparent text-white focus:outline-none' placeholder='Pranav Raghavan C M' />
                   </div>
                   <div className='mb-4 p-2 flex flex-col items-center glassmorphism'>
                     <label className='block text-lg font-medium text-white mb-2'>What's Your Mobile Number?</label>
-                    <input type='number' className='w-full border-b-2 border-white p-2 bg-transparent text-white focus:outline-none placeholder:text-white' placeholder='+91 9876543210' />
+                    <input type='number' className='w-full border-b-2 border-white p-2 bg-transparent text-white focus:outline-none' placeholder='+91 9876543210' />
                   </div>
                   <div className='mb-4 p-2 flex flex-col items-center glassmorphism'>
                     <label className='block text-lg font-medium text-white mb-2'>How Did You Hear About Us?</label>
-                    <select className='w-full border-b-2 border-white p-2 bg-transparent text-white focus:outline-none placeholder:text-white'>
+                    <select className='w-full border-b-2 border-white p-2 bg-transparent text-white focus:outline-none'>
                       <option value='' disabled selected className='bg-primary text-white'>Select</option>
                       <option value='google' className='bg-primary text-white'>Google Search</option>
                       <option value='facebook' className='bg-primary text-white'>Through a Friend</option>
@@ -58,17 +58,17 @@ const Home = () => {
         <div className='xl:hidden flex flex-col justify-center items-center bg-text font-sans py-2 px-1'>
           <div className='bg-white shadow-md p-4 w-full max-w-md mx-4 rounded-lg'>
             <h2 className='text-xl font-semibold mb-4 text-center text-text'>Want a Call From CallBotix?</h2>
-            <div className='mb-4 p-2 flex flex-col items-center glassmorphism'>
-              <label className='block text-lg font-medium text-text mb-2'>What's Your Name?</label>
-              <input type='text' className='w-full border-b-2 border-text p-2 bg-transparent text-text focus:outline-none placeholder:text-text' placeholder='NAME' />
+            <div className='mb-4 p-2 flex flex-col items-center bg-primary rounded-lg'>
+              <label className='block text-lg font-medium text-white mb-2'>What's Your Name?</label>
+              <input type='text' className='w-full border-b-2 border-white p-2 bg-transparent text-white focus:outline-none' placeholder='Pranav Raghavan C M' />
             </div>
-            <div className='mb-4 p-2 flex flex-col items-center glassmorphism'>
-              <label className='block text-lg font-medium text-text mb-2'>What's Your Mobile Number?</label>
-              <input type='number' className='w-full border-b-2 border-text p-2 bg-transparent text-text focus:outline-none placeholder:text-text' placeholder='+91 9876543210' />
+            <div className='mb-4 p-2 flex flex-col items-center bg-primary rounded-lg'>
+              <label className='block text-lg font-medium text-white mb-2'>What's Your Mobile Number?</label>
+              <input type='number' className='w-full border-b-2 border-white p-2 bg-transparent text-white focus:outline-none' placeholder='+91 9876543210' />
             </div>
-            <div className='mb-4 p-2 flex flex-col items-center glassmorphism'>
-              <label className='block text-lg font-medium text-text mb-2'>How Did You Hear About Us?</label>
-              <select className='w-full border-b-2 border-text p-2 bg-transparent text-text focus:outline-none'>
+            <div className='mb-4 p-2 flex flex-col items-center bg-primary rounded-lg'>
+              <label className='block text-lg font-medium text-white mb-2'>How Did You Hear About Us?</label>
+              <select className='w-full border-b-2 border-text p-2 bg-transparent text-white focus:outline-none'>
                 <option value='' disabled selected className='bg-primary text-white'>Select</option>
                 <option value='google' className='bg-primary text-white'>Google Search</option>
                 <option value='facebook' className='bg-primary text-white'>Through a Friend</option>

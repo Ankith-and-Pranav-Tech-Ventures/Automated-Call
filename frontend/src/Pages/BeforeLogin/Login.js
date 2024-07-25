@@ -20,12 +20,12 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleVerifyClick = () => {
+    toast.success("Verifying...");
     onSignup();
   };
-
   async function onCaptchVerify() {
     if (!window.recaptchaVerifier) {
-      window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
+      window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
         'size': 'invisible',
         'callback': (response) => {
           // onSignup();
@@ -33,35 +33,36 @@ const Login = () => {
         'expired-callback': () => {
           // Response expired. Ask user to solve reCAPTCHA again.
         }
-      }, auth);
+      });
     }
   }
 
   async function onSignup() {
     await onCaptchVerify();
     const appVerifier = window.recaptchaVerifier;
-    const formatPh = '+' + ph;
+    const formatPh = "+" + ph;
 
     await signInWithPhoneNumber(auth, formatPh, appVerifier)
       .then((confirmationResult) => {
         window.confirmationResult = confirmationResult;
         setShowOtpInput(true);
-        toast.success('OTP sent successfully!');
+        toast.success("OTP sent successfully!");
       }).catch((error) => {
         console.log(error);
-        toast.error('Failed to send OTP');
+        toast.error("Failed to send OTP");
       });
   }
 
   function onOtpVerify() {
     window.confirmationResult.confirm(otp).then(async (res) => {
       setUser(res.user);
-      toast.success('Login successful!');
-      setTimeout(() => navigate('/HomeLog'), 3000);
+      toast.success("Login successful!");
+      // localStorage.setItem('login', 'true');
+      // setTimeout(navigate('/HomeLog'), 3000);
     })
       .catch(err => {
         console.log(err);
-        toast.error('Failed to verify OTP');
+        toast.error("Failed to verify OTP");
       });
   }
 
@@ -79,14 +80,14 @@ const Login = () => {
                 <h2 className='text-center text-white text-2xl'>Login successful</h2>
               ) : (
                 <div className='w-full px-2 text-white'>
-                  <h2 className='font-bold text-2xl mb-2'>Login</h2>
-                  <p className='text-sm mb-4'>If you are already a member, easily log in</p>
+                  <h2 className='font-bold text-2xl mb-2 text-center'>Login</h2>
+                  <p className='text-sm mb-4 text-center'>If you are already a member, easily log in</p>
                   <form className='flex flex-col gap-4'>
                     <input className="p-2 rounded-xl border w-full text-primary focus:outline-none" type="text" placeholder='Name' name="userName"></input>
                     <div className='flex flex-col sm:flex-row items-center gap-2'>
                       <PhoneInput country={"in"} value={ph} onChange={setPh} className="rounded-xl border w-full sm:w-3/4 text-primary border-none" type='tel' placeholder='Phone number' name='phoneNumber'>
                       </PhoneInput>
-                      <button type='button' onClick={handleVerifyClick} className='w-full sm:w-1/4 rounded-xl border p-2 text-white bg-secondary hover:bg-accent duration-300'>
+                      <button type='button' onClick={handleVerifyClick} className='w-full sm:w-1/4 rounded-xl border p-2 text-white  hover:text-accent duration-300'>
                         Verify
                       </button>
                     </div>
@@ -94,16 +95,17 @@ const Login = () => {
                       <div id='otp' className='flex flex-col gap-2'>
                         <OtpInput className="p-2 rounded-xl border w-full flex justify-between gap-2" OTPLength={6} otpType="number" value={otp} onChange={setOtp} disabled={false} autoFocus>
                         </OtpInput>
-                        <button type='button' onClick={onOtpVerify} className='w-full rounded-xl border p-2 text-white bg-secondary hover:bg-accent duration-300'>
+                        <button type='button' onClick={onOtpVerify} className='w-full rounded-xl border p-2 text-white hover:text-accent duration-300'>
                           Login
                         </button>
                       </div>
                     )}
                     <div className='flex flex-col sm:flex-row items-center justify-center gap-2'>
-                      <p className='text-xs'>Don't have an account?</p>
-                      <Link to='/Register' className='w-full sm:w-1/4 rounded-xl border p-2 text-center text-white bg-secondary hover:bg-accent duration-300'>
-                        Register
-                      </Link>
+                      <p className='text-xs'>Don't have an account?&nbsp;
+                        <Link to='/Register' className='text-white hover:text-accent duration-300 underline'>
+                          Register
+                        </Link>
+                      </p>
                     </div>
                   </form>
                 </div>
@@ -132,7 +134,7 @@ const Login = () => {
                         <input className="p-2 mt-8 rounded-xl border w-full focus:outline-none" type="text" placeholder='Name' name="userName"></input>
                       </div>
                       <div className='flex pr-4 items-center justify-center'>
-                        <PhoneInput country={"in"} value={ph} onChange={setPh} className=" mt-4 rounded-xl border w-3/4 mr-1 border-none" type='tel' placeholder='Phone number' name='phoneNumber'></PhoneInput>
+                        <PhoneInput country={"in"} value={ph} onChange={setPh} className=" mt-4 rounded-xl border w-3/4 mr-1 text-primary border-none" type='tel' placeholder='Phone number' name='phoneNumber'></PhoneInput>
                         <button type='button' onClick={handleVerifyClick} className='bg-darkColor w-1/4 rounded-xl border ml-1 p-2 mt-4 text-white hover:text-accent duration-300'>
                           Verify
                         </button>
