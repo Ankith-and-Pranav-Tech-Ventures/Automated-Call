@@ -1,15 +1,18 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
+// import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
 import { Toaster, toast } from 'react-hot-toast';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import OtpInput from 'react-otp-input';
 import { Context } from '../../Context/ContextProvider';
-import { auth } from '../../AuthFolder/firebase.config';
+import { auth, RecaptchaVerifier, signInWithPhoneNumber } from './../../AuthFolder/firebase.config';
 import Navbar from '../../Components/Navbar';
 import Footer from '../../Components/Footer';
 import Image from '../../Images/LoginImage.png';
+import { initializeApp } from 'firebase/app';
+// import firebase from 'firebase/app';
+import 'firebase/auth';
 
 const Login = () => {
   const { login } = useContext(Context);
@@ -17,13 +20,9 @@ const Login = () => {
   const [otp, setOtp] = useState('');
   const [ph, setPh] = useState('');
   const [user, setUser] = useState(null);
-  const navigate = useNavigate();
+  // const auth = firebase.auth();
 
-  const handleVerifyClick = () => {
-    toast.success("Verifying...");
-    onSignup();
-  };
-  async function onCaptchVerify() {
+  useEffect(() => {
     if (!window.recaptchaVerifier) {
       window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
         'size': 'invisible',
@@ -35,36 +34,41 @@ const Login = () => {
         }
       });
     }
-  }
+  }, []);
 
-  async function onSignup() {
-    await onCaptchVerify();
+  const onSignup = () => {
     const appVerifier = window.recaptchaVerifier;
     const formatPh = "+" + ph;
 
-    await signInWithPhoneNumber(auth, formatPh, appVerifier)
+    signInWithPhoneNumber(auth, formatPh, appVerifier)
       .then((confirmationResult) => {
         window.confirmationResult = confirmationResult;
-        setShowOtpInput(true);
-        toast.success("OTP sent successfully!");
+        toast.success("OTP sent successfully");
       }).catch((error) => {
-        console.log(error);
+        console.error(error);
         toast.error("Failed to send OTP");
       });
-  }
+  };
 
-  function onOtpVerify() {
-    window.confirmationResult.confirm(otp).then(async (res) => {
+  const handleVerifyClick = () => {
+    if (ph.length < 10) {
+      toast.error("Invalid phone number.");
+      return;
+    }
+    toast.success("Verifying...");
+    onSignup();
+  };
+
+  const onOtpVerify = () => {
+    window.confirmationResult.confirm(otp).then((res) => {
       setUser(res.user);
       toast.success("Login successful!");
-      // localStorage.setItem('login', 'true');
-      // setTimeout(navigate('/HomeLog'), 3000);
     })
       .catch(err => {
-        console.log(err);
+        console.error(err);
         toast.error("Failed to verify OTP");
       });
-  }
+  };
 
   return (
     <>
@@ -87,7 +91,7 @@ const Login = () => {
                     <div className='flex flex-col sm:flex-row items-center gap-2'>
                       <PhoneInput country={"in"} value={ph} onChange={setPh} className="rounded-xl border w-full sm:w-3/4 text-primary border-none" type='tel' placeholder='Phone number' name='phoneNumber'>
                       </PhoneInput>
-                      <button type='button' onClick={handleVerifyClick} className='w-full sm:w-1/4 rounded-xl border p-2 text-white  hover:text-accent duration-300'>
+                      <button type='button' onClick={handleVerifyClick} className='w-full sm:w-1/4 rounded-xl border p-2 text-white hover:text-accent duration-300'>
                         Verify
                       </button>
                     </div>

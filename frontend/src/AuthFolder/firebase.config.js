@@ -1,23 +1,16 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+import { initializeApp } from 'firebase/app';
+import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
 const firebaseConfig = {
-  apiKey: "AIzaSyAuWda-_OP1EGkQZ1zgW4GuforEFGwPGsU",
-  authDomain: "gemini-api-web-app-a198f.firebaseapp.com",
-  projectId: "gemini-api-web-app-a198f",
-  storageBucket: "gemini-api-web-app-a198f.appspot.com",
-  messagingSenderId: "59060039408",
-  appId: "1:59060039408:web:b2d3428e6f5f2e39d45c35",
-  measurementId: "G-4K8YJHQMW7"
+  apiKey: "AIzaSyDQqwB6cq8iEOYBI_jsFtQnaSz-a6MdTL8",
+  authDomain: "automated-call-9fbcb.firebaseapp.com",
+  projectId: "automated-call-9fbcb",
+  storageBucket: "automated-call-9fbcb.appspot.com",
+  messagingSenderId: "738289007344",
+  appId: "1:738289007344:web:c76e3414bc7b00a1982035",
+  measurementId: "G-8SH7LE7W8D"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app)
-export { auth }
+const auth = getAuth(app);
+
+export { auth, RecaptchaVerifier, signInWithPhoneNumber };
